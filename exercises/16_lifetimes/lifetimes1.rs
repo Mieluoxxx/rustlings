@@ -1,10 +1,10 @@
-// The Rust compiler needs to know how to check whether supplied references are
-// valid, so that it can let the programmer know if a reference is at risk of
-// going out of scope before it is used. Remember, references are borrows and do
-// not own their own data. What if their owner goes out of scope?
+// Rust 编译器需要知道如何检查提供的引用是否有效，
+// 以便它可以让程序员知道引用是否有在被使用之前
+// 就超出作用域的风险。记住，引用是借用，
+// 并不拥有它们自己的数据。如果它们的所有者超出了作用域会怎样？
 
-// TODO: Fix the compiler error by updating the function signature.
-fn longest(x: &str, y: &str) -> &str {
+// TODO: 通过更新函数签名来修复编译器错误。
+fn longest<'a>(x: &'a str, y: &'a str) -> &'a str {
     if x.len() > y.len() {
         x
     } else {
@@ -13,7 +13,7 @@ fn longest(x: &str, y: &str) -> &str {
 }
 
 fn main() {
-    // You can optionally experiment here.
+    // 你可以在这里进行可选的实验。
 }
 
 #[cfg(test)]

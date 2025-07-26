@@ -1,15 +1,15 @@
-# Macros
+# 宏
 
-Rust's macro system is very powerful, but also kind of difficult to wrap your
-head around. We're not going to teach you how to write your own fully-featured
-macros. Instead, we'll show you how to use and create them.
+Rust 的宏系统非常强大，但也有点难以理解。
+我们不打算教你如何编写功能齐全的宏。
+相反，我们将向你展示如何使用和创建它们。
 
-If you'd like to learn more about writing your own macros, the
-[macrokata](https://github.com/tfpk/macrokata) project has a similar style
-of exercises to Rustlings, but is all about learning to write Macros.
+如果你想学习更多关于编写自己的宏的知识，
+[macrokata](https://github.com/tfpk/macrokata) 项目有与 Rustlings 类似风格的练习，
+但全部是关于学习编写宏的。
 
-## Further information
+## 更多信息
 
-- [The Rust Book - Macros](https://doc.rust-lang.org/book/ch20-05-macros.html)
-- [The Little Book of Rust Macros](https://veykril.github.io/tlborm/)
+- [Rust 编程之道 - 宏](https://doc.rust-lang.org/book/ch20-05-macros.html)
+- [Rust 宏小书](https://veykril.github.io/tlborm/)
 - [Rust by Example - macro_rules!](https://doc.rust-lang.org/rust-by-example/macros.html)

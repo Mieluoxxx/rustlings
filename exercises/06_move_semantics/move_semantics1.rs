@@ -1,11 +1,11 @@
-// TODO: Fix the compiler error in this function.
+// TODO: 修复此函数中的编译器错误。
 fn fill_vec(mut vec: Vec<i32>) -> Vec<i32> {
     vec.push(88);
     vec
 }
 
 fn main() {
-    // You can optionally experiment here.
+    // 你可以在这里进行可选的实验。
 }
 
 #[cfg(test)]

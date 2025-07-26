@@ -1,6 +1,6 @@
-// The `From` trait is used for value-to-value conversions. If `From` is
-// implemented, an implementation of `Into` is automatically provided.
-// You can read more about it in the documentation:
+// `From` trait 用于值到值的转换。如果实现了 `From`，
+// 则会自动提供 `Into` 的实现。
+// 你可以在文档中阅读更多相关信息：
 // https://doc.rust-lang.org/std/convert/trait.From.html
 
 #[derive(Debug)]
@@ -9,8 +9,8 @@ struct Person {
     age: u8,
 }
 
-// We implement the Default trait to use it as a fallback when the provided
-// string is not convertible into a `Person` object.
+// 我们实现了 Default trait，以便在提供的
+// 字符串无法转换为 `Person` 对象时将其用作回退。
 impl Default for Person {
     fn default() -> Self {
         Self {
@@ -20,29 +20,44 @@ impl Default for Person {
     }
 }
 
-// TODO: Complete this `From` implementation to be able to parse a `Person`
-// out of a string in the form of "Mark,20".
-// Note that you'll need to parse the age component into a `u8` with something
-// like `"4".parse::<u8>()`.
+// TODO: 完成此 `From` 实现，以便能够从
+// "Mark,20" 形式的字符串中解析出 `Person`。
+// 请注意，你需要使用类似 `"4".parse::<u8>()` 的方式将年龄部分解析为 `u8`。
 //
-// Steps:
-// 1. Split the given string on the commas present in it.
-// 2. If the split operation returns less or more than 2 elements, return the
-//    default of `Person`.
-// 3. Use the first element from the split operation as the name.
-// 4. If the name is empty, return the default of `Person`.
-// 5. Parse the second element from the split operation into a `u8` as the age.
-// 6. If parsing the age fails, return the default of `Person`.
+// 步骤：
+// 1. 根据逗号分割给定的字符串。
+// 2. 如果分割操作返回少于或多于 2 个元素，则返回 `Person` 的默认值。
+// 3. 使用分割操作的第一个元素作为名称。
+// 4. 如果名称为空，则返回 `Person` 的默认值。
+// 5. 将分割操作的第二个元素解析为 `u8` 作为年龄。
+// 6. 如果解析年龄失败，则返回 `Person` 的默认值。
 impl From<&str> for Person {
-    fn from(s: &str) -> Self {}
+    fn from(s: &str) -> Self {
+        let parts: Vec<&str> = s.split(',').collect();
+        if parts.len() != 2 {
+            return Person::default();
+        }
+        let name = parts[0];
+        if name.is_empty() {
+            return Person::default();
+        }
+        if let Ok(age) = parts[1].parse() {
+            Person {
+                name: name.to_string(),
+                age,
+            }
+        } else {
+            Person::default()
+        }
+    }
 }
 
 fn main() {
-    // Use the `from` function.
+    // 使用 `from` 函数。
     let p1 = Person::from("Mark,20");
     println!("{p1:?}");
 
-    // Since `From` is implemented for Person, we are able to use `Into`.
+    // 由于为 Person 实现了 `From`，因此我们能够使用 `Into`。
     let p2: Person = "Gerald,70".into();
     println!("{p2:?}");
 }

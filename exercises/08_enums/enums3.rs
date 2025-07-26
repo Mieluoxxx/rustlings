@@ -16,7 +16,7 @@ struct State {
     height: u64,
     position: Point,
     message: String,
-    // RGB color composed of red, green and blue.
+    // RGB 颜色由红、绿、蓝组成。
     color: (u8, u8, u8),
     quit: bool,
 }
@@ -44,8 +44,15 @@ impl State {
     }
 
     fn process(&mut self, message: Message) {
-        // TODO: Create a match expression to process the different message
-        // variants using the methods defined above.
+        // TODO: 创建一个匹配表达式来处理不同的消息
+        // 变体，使用上面定义的方法。
+        match message {
+            Message::Resize { width, height } => self.resize(width, height),
+            Message::Move(point) => self.move_position(point),
+            Message::Echo(s) => self.echo(s),
+            Message::ChangeColor(r, g, b) => self.change_color(r, g, b),
+            Message.Quit => self.quit(),
+        }
     }
 }
 

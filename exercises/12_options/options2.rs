@@ -1,5 +1,5 @@
 fn main() {
-    // You can optionally experiment here.
+    // 你可以在这里进行可选的实验。
 }
 
 #[cfg(test)]
@@ -9,8 +9,8 @@ mod tests {
         let target = "rustlings";
         let optional_target = Some(target);
 
-        // TODO: Make this an if-let statement whose value is `Some`.
-        word = optional_target {
+        // TODO: 将其变为一个值为 `Some` 的 if-let 语句。
+        if let Some(word) = optional_target {
             assert_eq!(word, target);
         }
     }
@@ -26,10 +26,10 @@ mod tests {
 
         let mut cursor = range;
 
-        // TODO: Make this a while-let statement. Remember that `Vec::pop()`
-        // adds another layer of `Option`. You can do nested pattern matching
-        // in if-let and while-let statements.
-        integer = optional_integers.pop() {
+        // TODO: 将其变为一个 while-let 语句。记住 `Vec::pop()`
+        // 会添加另一层 `Option`。你可以在 if-let 和 while-let 语句中
+        // 进行嵌套模式匹配。
+        while let Some(Some(integer)) = optional_integers.pop() {
             assert_eq!(integer, cursor);
             cursor -= 1;
         }

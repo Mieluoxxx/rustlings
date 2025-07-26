@@ -1,6 +1,11 @@
 #[derive(Debug)]
 enum Message {
-    // TODO: Define a few types of messages as used below.
+    // TODO: 定义几种类型的消息，如下所示。
+    Resize,
+    Move,
+    Echo,
+    ChangeColor,
+    Quit,
 }
 
 fn main() {

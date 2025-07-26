@@ -1,8 +1,7 @@
-// Using catch-all error types like `Box<dyn Error>` isn't recommended for
-// library code where callers might want to make decisions based on the error
-// content instead of printing it out or propagating it further. Here, we define
-// a custom error type to make it possible for callers to decide what to do next
-// when our function returns an error.
+// 不建议在库代码中使用像 `Box<dyn Error>` 这样的包罗万象的错误类型，
+// 因为调用者可能希望根据错误内容做出决策，而不是打印出来或进一步传播。
+// 在这里，我们定义一个自定义错误类型，以便调用者在我们的函数返回错误时
+// 能够决定下一步该做什么。
 
 use std::num::ParseIntError;
 
@@ -12,7 +11,7 @@ enum CreationError {
     Zero,
 }
 
-// A custom error type that we will be using in `PositiveNonzeroInteger::parse`.
+// 我们将在 `PositiveNonzeroInteger::parse` 中使用的自定义错误类型。
 #[derive(PartialEq, Debug)]
 enum ParsePosNonzeroError {
     Creation(CreationError),
@@ -24,8 +23,10 @@ impl ParsePosNonzeroError {
         Self::Creation(err)
     }
 
-    // TODO: Add another error conversion function here.
-    // fn from_parse_int(???) -> Self { ??? }
+    // TODO: 在这里添加另一个错误转换函数。
+    fn from_parse_int(err: ParseIntError) -> Self {
+        Self::ParseInt(err)
+    }
 }
 
 #[derive(PartialEq, Debug)]
@@ -41,15 +42,14 @@ impl PositiveNonzeroInteger {
     }
 
     fn parse(s: &str) -> Result<Self, ParsePosNonzeroError> {
-        // TODO: change this to return an appropriate error instead of panicking
-        // when `parse()` returns an error.
-        let x: i64 = s.parse().unwrap();
+        // TODO: 将此更改为在 `parse()` 返回错误时返回适当的错误，而不是 panic。
+        let x: i64 = s.parse().map_err(ParsePosNonzeroError::from_parse_int)?;
         Self::new(x).map_err(ParsePosNonzeroError::from_creation)
     }
 }
 
 fn main() {
-    // You can optionally experiment here.
+    // 你可以在这里进行可选的实验。
 }
 
 #[cfg(test)]

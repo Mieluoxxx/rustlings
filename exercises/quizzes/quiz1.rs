@@ -1,22 +1,20 @@
-// This is a quiz for the following sections:
-// - Variables
-// - Functions
-// - If
+// 这是针对以下部分的测验：
+// - 变量
+// - 函数
+// - If语句
 //
-// Mary is buying apples. The price of an apple is calculated as follows:
-// - An apple costs 2 rustbucks.
-// - However, if Mary buys more than 40 apples, the price of each apple in the
-// entire order is reduced to only 1 rustbuck!
+// 玛丽正在买苹果。一个苹果的价格计算如下：
+// - 一个苹果花费 2 rustbucks。
+// - 但是，如果玛丽购买超过 40 个苹果，整个订单中每个苹果的价格将降至仅 1 rustbuck！
 
-// TODO: Write a function that calculates the price of an order of apples given
-// the quantity bought.
+// TODO: 编写一个函数，根据购买的数量计算苹果订单的价格。
 // fn calculate_price_of_apples(???) -> ??? { ??? }
 
 fn main() {
-    // You can optionally experiment here.
+    // 你可以在这里进行可选的实验。
 }
 
-// Don't change the tests!
+// 不要更改测试！
 #[cfg(test)]
 mod tests {
     use super::*;

@@ -15,11 +15,11 @@ impl Queue {
 }
 
 fn send_tx(q: Queue, tx: mpsc::Sender<u32>) {
-    // TODO: We want to send `tx` to both threads. But currently, it is moved
-    // into the first thread. How could you solve this problem?
+    // TODO: 我们想把 `tx` 发送给两个线程。但目前，它被移动到了
+    // 第一个线程中。你该如何解决这个问题？
     thread::spawn(move || {
         for val in q.first_half {
-            println!("Sending {val:?}");
+            println!("正在发送 {val:?}");
             tx.send(val).unwrap();
             thread::sleep(Duration::from_millis(250));
         }
@@ -27,7 +27,7 @@ fn send_tx(q: Queue, tx: mpsc::Sender<u32>) {
 
     thread::spawn(move || {
         for val in q.second_half {
-            println!("Sending {val:?}");
+            println!("正在发送 {val:?}");
             tx.send(val).unwrap();
             thread::sleep(Duration::from_millis(250));
         }
@@ -35,7 +35,7 @@ fn send_tx(q: Queue, tx: mpsc::Sender<u32>) {
 }
 
 fn main() {
-    // You can optionally experiment here.
+    // 你可以在这里进行可选的实验。
 }
 
 #[cfg(test)]
